@@ -11,12 +11,9 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/demo1")
+@RequiredArgsConstructor
 public class Demo1Controller {
-    private final List<Board> boards;
-
-    public Demo1Controller() {
-        boards = new ArrayList<>();
-    }
+    private final BoardRepository boardRepository;
 
     @GetMapping("/hello")
     public String hello() {
@@ -24,26 +21,22 @@ public class Demo1Controller {
     }
     @GetMapping
     public List<Board> getBoards() {
-        return boards;
+        return boardRepository.findAll();
     }
     @GetMapping("{id}")
     public Board getBoardById(@PathVariable("id") UUID id) {
-        return boards.stream()
-                .filter(board -> board.id().equals(id))
-                .findFirst()
-                .orElseThrow();
+        return boardRepository.findById(id).orElseThrow();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Board save(@RequestBody BoardRequest request) {
-        Board board = request.toEntity();
-        boards.add(board);
-        return board;
+
+        return boardRepository.save(request.toEntity());
     }
     @DeleteMapping("{id}")
     public void deleteById(@PathVariable("id") UUID id) {
-        boards.removeIf(board -> board.id().equals(id));
+        boardRepository.deleteById(id);
     }
 
 }
