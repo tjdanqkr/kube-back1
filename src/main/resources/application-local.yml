@@ -2,5 +2,6 @@ spring:
   application:
     name: demo1
 
+
 app:
   origin: "*"

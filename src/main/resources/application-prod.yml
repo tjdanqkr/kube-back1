@@ -16,7 +16,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: prometheus
+        include: prometheus,health
   metrics:
     tags:
       application: demo1
@@ -25,6 +25,10 @@ management:
         http:
           server:
             requests: 'true'
+  prometheus:
+    metrics:
+      export:
+        enabled: true
 logging:
   pattern:
     level: "trace_id=%mdc{trace_id} span_id=%mdc{span_id} trace_flags=%mdc{trace_flags} %p"
