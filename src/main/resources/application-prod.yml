@@ -20,11 +20,11 @@ management:
   metrics:
     tags:
       application: demo1
-    distribution:
-      percentiles-histogram:
-        http:
-          server:
-            requests: 'true'
+#    distribution:
+#      percentiles-histogram:
+#        http:
+#          server:
+#            requests: 'true'
   prometheus:
     metrics:
       export:
