@@ -19,7 +19,7 @@ management:
         include: prometheus
   metrics:
     tags:
-      application: app
+      application: demo1
     distribution:
       percentiles-histogram:
         http:
