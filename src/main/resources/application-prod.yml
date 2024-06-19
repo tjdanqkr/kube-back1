@@ -29,6 +29,8 @@ management:
     metrics:
       export:
         enabled: true
+        pushgateway:
+          base-url: http://loki-prometheus-pushgateway:9091
 logging:
   pattern:
     level: "trace_id=%mdc{trace_id} span_id=%mdc{span_id} trace_flags=%mdc{trace_flags} %p"
